@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mobileIdClient
+  AP_ID="mid://dev.swisscom.ch"
+  EnableSubscriberInfo = "True"
+  SslKeystore = "CurrentUser"
+  SslCertThumbprint ="59ade4238301c07b5064f7c33d57ca93895a2471"
+  ServiceUrlPrefix ="https://soap.pp.mobileid.swisscom.com/soap/services/"
+  SslRootCaCertDN ="CN=Swisscom TEST Root CA 2, OU=Digital Certificate Services, O=Swisscom, C=ch"
+ />
