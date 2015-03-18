@@ -34,8 +34,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>jet-midc.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,6 +59,9 @@
     <Compile Include="Util.cs" />
     <Compile Include="WebClientConfig.cs" />
     <Compile Include="WebClientImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="jet-midc.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

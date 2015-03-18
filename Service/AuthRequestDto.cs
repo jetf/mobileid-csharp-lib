@@ -44,15 +44,16 @@ namespace MobileId
         {
             StringBuilder sb = new StringBuilder(196); // empty object: 138 chars
             // fields are ordered alphabetically by name
-            sb.Append("ApId:").Append(Util.Str(_apId));
+            sb.Append("{ApId:").Append(Util.Str(_apId));
             sb.Append(", Instant:").Append(Util.Str(_instant));
             sb.Append(", MsgToBeSigned:").Append(Util.Str(_msgToBeSigned));
+            sb.Append(", PhoneNumber:").Append(Util.Str(_phoneNumber));
             sb.Append(", TimeOut:").Append(_timeout);
             sb.Append(", TransId:").Append(Util.Str(_transId));
             sb.Append(", TransIdPrefix:").Append(Util.Str(_transIdPrefix));
             sb.Append(", SrvSideValidation:").Append(_srvSideValidation);
             sb.Append(", UserLanguage:").AppendFormat("{0:G}", _userLanguage);
-
+            sb.Append("}");
             return sb.ToString();
         }
 
@@ -64,7 +65,7 @@ namespace MobileId
             set
             {
                 if (string.IsNullOrEmpty(value) ) throw new ArgumentNullException("PhoneNumberIsNullOrEmpty");
-                if (!Regex.Match(value, @"^\+\d{11}$").Success) throw new ArgumentException("PhoneNumberIsIllFormed"); // WARNING: this applies to swiss phone number only
+                if (!Regex.Match(value, @"^\+?\d{7,15}$").Success) throw new ArgumentException("PhoneNumberIsIllFormed");
                 _phoneNumber = value;
             }
         }
