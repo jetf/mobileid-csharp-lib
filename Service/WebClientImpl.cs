@@ -24,7 +24,7 @@ namespace MobileId
 
         public int GetClientVersion()
         {
-            return 1;
+            return 2;
         }
 
         public WebClientImpl(WebClientConfig cfg)
@@ -666,6 +666,7 @@ xmlns:fi=""http://mss.ficom.fi/TS102204/v1.0.0#"">
 
         public AuthResponseDto RequestSignature(AuthRequestDto req, bool asynchronous)
         {
+            logger.TraceEvent(TraceEventType.Verbose, 0, "RequestSignature(req={0}, async={1})", req, asynchronous);
             if (!req.IsComplete())
                 return new AuthResponseDto(ServiceStatusCode.InvalidInput, "Input is incomplete");
 
@@ -856,8 +857,11 @@ xmlns:fi=""http://mss.ficom.fi/TS102204/v1.0.0#"">
         /// <remarks>If you want to let PollSignagure regenerates a AP_TransId, set req.TransId to null.</remarks>
         public AuthResponseDto PollSignature(AuthRequestDto req, string msspTransId)
         {
-            if (!req.IsComplete() || String.IsNullOrEmpty(msspTransId))
+            logger.TraceEvent(TraceEventType.Verbose, 0, "PollSignature(req={0}, msspTransId={1})", req, Util.Str(msspTransId));
+            if (!req.IsComplete())
                 return new AuthResponseDto(ServiceStatusCode.InvalidInput, "Input is incomplete");
+            if (String.IsNullOrEmpty(msspTransId))
+                return new AuthResponseDto(ServiceStatusCode.InvalidInput, "msspTransId is null or empty");
 
             // build web request Body
             string httpReqBody = String.Format(
